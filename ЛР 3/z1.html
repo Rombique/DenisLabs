@@ -20,8 +20,54 @@
 }
 
 </style>
+<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
 <script>
-	
+	function setButtonsClicks() {
+		jQuery('button').each((i, el) => {
+			jQuery(el).click(() => jQuery('body').removeAttr('class'));
+			if (i != 3) { // если не кнопка "—бросить"
+				jQuery(el).click(() => {
+					jQuery('body').addClass('text' + (i + 1));
+				});
+			}
+		});
+	}
+
+	function setSelectClick() {
+		jQuery('select').change((event) => {
+			let color = jQuery(event.target).val();
+			jQuery('body').css('background-color', color);
+		});
+	}
+
+	function onHoverLists() {
+		jQuery('#list_1').mouseenter(() => {
+			jQuery('#list_1 > li').css('text-decoration', 'underline');
+		}).mouseleave(() => {
+			jQuery('#list_1 > li').css('text-decoration', 'none');
+		});
+
+		jQuery('#list_2').mouseenter(() => {
+			jQuery('#list_2 > li').css('font-style', 'oblique');
+		}).mouseleave(() => {
+			jQuery('#list_2 > li').css('font-style', 'normal');
+		});
+	}
+
+	function onHoverImg() {
+		jQuery('#Roll').mouseenter(() => {
+			jQuery('#Roll').attr('src', 'Pics\\pic2.jpg');
+		}).mouseleave(() => {
+			jQuery('#Roll').attr('src', 'Pics\\pic1.jpg');
+		});
+	}
+
+	jQuery(document).ready(() => {
+		setButtonsClicks();
+		setSelectClick();
+		onHoverLists();
+		onHoverImg();
+	});
 	
 </script>
 
