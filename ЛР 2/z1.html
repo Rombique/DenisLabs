@@ -12,10 +12,59 @@
 		font-family: "Times New Roman";
 	}
 </style>
+<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
 <script>
- $(document).ready(function() {
-	
-	});	
+
+	function setBackgroundColor() {
+		
+		jQuery('body').css('background-color', getRandomRGB());
+	}
+
+	function getRandomRGB() {
+
+		var red = getRandomNumber();
+		var green = getRandomNumber();
+		var blue = getRandomNumber();
+		
+		return 'rgb(' + red + ',' + green + ',' + blue + ')';
+
+		function getRandomNumber() {
+			return Math.floor((Math.random() * 256));
+		}
+	}
+
+	function setH2Underscore() {
+		jQuery('h2').each((i, el) => el.innerHTML = '<u>' + el.innerText + '</u>')
+	}
+
+	function addClassTextToPs() {
+		jQuery('p').each((i, el) => el.classList.add('text'));
+	}
+
+	function changeTabHeader() {
+		jQuery('#tabHeader').removeAttr('align');
+		jQuery('#tabHeader').css('font-weight', 'bold');
+	}
+
+	function changeRowsColor() {
+		jQuery('table > tbody > tr').each((i, el) => {
+			if (i % 2 == 0)
+				jQuery(el).css('background-color', getRandomRGB());
+		})
+	}
+
+	function setFooter() {
+		jQuery('table').after('<p class="text">«© Работа выполнена студентом Субботиным Денисом»</p>')
+	}
+
+	jQuery(document).ready(function() {
+		setBackgroundColor();
+		setH2Underscore();
+		addClassTextToPs();
+		changeTabHeader();
+		changeRowsColor();
+		setFooter();
+	});
 </script>
 
 </head>
