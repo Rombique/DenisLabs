@@ -18,11 +18,56 @@
 </style>
 </head>
 
-
+<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
 <script>
-$(document).ready(function() {
+	function getNSetMousePosition() {
+		jQuery(document).mousemove((event) => {
+			jQuery('#coord1').val(event.pageX);
+			jQuery('#coord2').val(event.pageY);
+		});
+	}
 
-});
+	function hideDescriptions() {
+		jQuery('.attr_desc').each((i, el) => jQuery(el).hide());
+	}
+
+	function setOnTogButtonClick() {
+		jQuery('.TogButton').each((i, el) => jQuery(el).click((event) => toggle(event.target)));
+
+		function toggle(el) {
+			if (el.textContent != 'Показать')
+				el.textContent = 'Показать';
+			else
+				el.textContent = 'Скрыть';
+			jQuery(el).next().toggle();
+		}
+	}
+
+	function setOnTableRowHover() {
+		jQuery('table > tbody > tr')
+			.mouseenter((event) => jQuery(event.target.parentElement).css('background-color', getRandomRGB())
+			.mouseleave((event) => jQuery(event.target.parentElement).css('background-color', 'none')));
+
+		function getRandomRGB() {
+
+			var red = getRandomNumber();
+			var green = getRandomNumber();
+			var blue = getRandomNumber();
+
+			return 'rgb(' + red + ',' + green + ',' + blue + ')';
+
+			function getRandomNumber() {
+				return Math.floor((Math.random() * 256));
+			}
+		}
+	}
+
+	jQuery(document).ready(function() {
+		getNSetMousePosition();
+		hideDescriptions();
+		setOnTogButtonClick();
+		setOnTableRowHover();
+	});
 </script>
 
 <body>
